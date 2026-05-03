@@ -1,0 +1,136 @@
+:root {
+  color-scheme: light;
+  --bg: #f7f7fb;
+  --surface: #ffffff;
+  --text: #1b1c21;
+  --muted: #5c606d;
+  --primary: #3b82f6;
+  --primary-strong: #1d4ed8;
+  --border: rgba(15, 23, 42, 0.08);
+  --shadow: 0 24px 48px rgba(15, 23, 42, 0.08);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #eef4ff, transparent 40%), var(--bg);
+  color: var(--text);
+}
+
+.page-shell {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+.hero {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 32px;
+  box-shadow: var(--shadow);
+  padding: 3rem;
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  color: var(--primary);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  line-height: 1.05;
+}
+
+.intro {
+  margin: 0 0 2rem;
+  max-width: 40rem;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0 1.4rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #ffffff;
+  background: var(--primary);
+  box-shadow: 0 12px 30px rgba(59, 130, 246, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 34px rgba(59, 130, 246, 0.2);
+}
+
+.button-secondary {
+  background: #eef2ff;
+  color: var(--primary-strong);
+  box-shadow: none;
+}
+
+.section-card {
+  margin-top: 2.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.section-card h2 {
+  margin-top: 0;
+}
+
+.feature-list {
+  margin: 1rem 0 0;
+  padding-left: 1.3rem;
+  color: var(--muted);
+}
+
+.feature-list li {
+  margin-bottom: 0.9rem;
+}
+
+.footer {
+  margin-top: 3rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    padding: 2rem 1rem 3rem;
+  }
+
+  .hero,
+  .section-card {
+    padding: 2rem;
+  }
+}
