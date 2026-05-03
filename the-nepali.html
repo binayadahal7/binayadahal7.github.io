@@ -3,46 +3,1185 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Nepali</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>The Nepali – Independent Journalism</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ft-pink:    #FFF1E5;
+      --ft-salmon:  #F4603F;
+      --ft-dark:    #1A1A1A;
+      --ft-mid:     #33302E;
+      --ft-warm:    #6B5C4E;
+      --ft-border:  #CFC8C0;
+      --ft-rule:    #E3DDD7;
+      --ft-accent:  #C0392B;
+      --ft-gold:    #A67C52;
+      --ft-link:    #0F5499;
+      --ft-light:   #F9F4EF;
+      --serif:      'Playfair Display', Georgia, serif;
+      --body-serif: 'Source Serif 4', Georgia, serif;
+      --sans:       'Noto Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ft-pink);
+      color: var(--ft-dark);
+      font-family: var(--body-serif);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { color: var(--ft-salmon); }
+
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: var(--ft-dark);
+      color: #aaa;
+      font-family: var(--sans);
+      font-size: 11.5px;
+      letter-spacing: .04em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 24px;
+    }
+    .topbar a { color: #ccc; }
+    .topbar a:hover { color: #fff; }
+    .topbar-left { display: flex; gap: 18px; }
+    .topbar-right { display: flex; gap: 18px; }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--ft-pink);
+      border-bottom: 3px solid var(--ft-dark);
+    }
+
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 16px 0 10px;
+      border-bottom: 1px solid var(--ft-border);
+    }
+
+    .header-meta {
+      font-family: var(--sans);
+      font-size: 11px;
+      color: var(--ft-warm);
+      letter-spacing: .04em;
+    }
+
+    .masthead {
+      text-align: center;
+      padding: 6px 0 4px;
+    }
+
+    .masthead h1 {
+      font-family: var(--serif);
+      font-size: 62px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      color: var(--ft-dark);
+      line-height: 1;
+    }
+
+    .masthead .tagline {
+      font-family: var(--sans);
+      font-size: 11px;
+      color: var(--ft-warm);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    .btn {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 7px 14px;
+      cursor: pointer;
+      border: none;
+      letter-spacing: .04em;
+    }
+
+    .btn-primary {
+      background: var(--ft-salmon);
+      color: #fff;
+    }
+    .btn-primary:hover { background: #d44a30; color: #fff; }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ft-dark);
+      border: 1.5px solid var(--ft-dark);
+    }
+    .btn-ghost:hover { background: var(--ft-dark); color: #fff; }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--ft-dark);
+    }
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 0;
+      align-items: center;
+    }
+
+    .nav-item {
+      font-family: var(--sans);
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #E0D9D2;
+      padding: 10px 14px;
+      letter-spacing: .04em;
+      display: block;
+      transition: background .15s, color .15s;
+    }
+    .nav-item:hover, .nav-item.active {
+      background: var(--ft-salmon);
+      color: #fff;
+    }
+
+    .nav-search {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-search input {
+      background: #2a2a2a;
+      border: 1px solid #444;
+      color: #eee;
+      font-family: var(--sans);
+      font-size: 12px;
+      padding: 5px 10px;
+      width: 160px;
+      outline: none;
+    }
+
+    .nav-search input::placeholder { color: #777; }
+
+    /* ── TICKER ── */
+    .ticker {
+      background: var(--ft-light);
+      border-bottom: 1px solid var(--ft-border);
+      overflow: hidden;
+      padding: 7px 0;
+    }
+    .ticker-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .ticker-label {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 500;
+      background: var(--ft-salmon);
+      color: #fff;
+      padding: 2px 7px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .ticker-track {
+      overflow: hidden;
+      flex: 1;
+    }
+    .ticker-items {
+      display: flex;
+      gap: 48px;
+      animation: ticker 30s linear infinite;
+      white-space: nowrap;
+    }
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .ticker-item {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--ft-mid);
+    }
+    .ticker-item span { color: var(--ft-salmon); font-weight: 600; margin-right: 4px; }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-family: var(--sans);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ft-salmon);
+      border-top: 2px solid var(--ft-salmon);
+      padding-top: 6px;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    /* ── LEAD STORY ── */
+    .lead-section {
+      padding: 28px 0 0;
+      border-bottom: 2px solid var(--ft-dark);
+    }
+
+    .lead-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 340px;
+      gap: 0;
+    }
+
+    .lead-main {
+      grid-column: 1 / 3;
+      padding-right: 28px;
+      border-right: 1px solid var(--ft-border);
+    }
+
+    .lead-image {
+      height: 360px;
+      margin-bottom: 18px;
+      background: #ccc;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .lead-image img {
+      transition: transform .5s ease;
+    }
+    .lead-image:hover img { transform: scale(1.02); }
+
+    .lead-kicker {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ft-salmon);
+      margin-bottom: 8px;
+    }
+
+    .lead-headline {
+      font-family: var(--serif);
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--ft-dark);
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+    .lead-headline:hover { color: var(--ft-salmon); }
+
+    .lead-deck {
+      font-family: var(--body-serif);
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--ft-mid);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .byline {
+      font-family: var(--sans);
+      font-size: 11.5px;
+      color: var(--ft-warm);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .byline strong { color: var(--ft-dark); font-weight: 500; }
+    .byline-dot::after { content: '·'; margin: 0 2px; }
+
+    /* ── SECONDARY LEADS ── */
+    .secondary-leads {
+      padding: 0 28px;
+      border-right: 1px solid var(--ft-border);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .secondary-story {
+      padding: 0 0 18px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--ft-rule);
+    }
+    .secondary-story:last-child { border-bottom: none; margin-bottom: 0; }
+
+    .secondary-image {
+      height: 140px;
+      background: #ddd;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .sec-headline {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
+    .sec-headline:hover { color: var(--ft-salmon); }
+
+    .sec-deck {
+      font-family: var(--body-serif);
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--ft-mid);
+      line-height: 1.55;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      padding-left: 24px;
+    }
+
+    .sidebar-block {
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--ft-border);
+    }
+    .sidebar-block:last-child { border-bottom: none; }
+
+    .sidebar-story {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--ft-rule);
+      cursor: pointer;
+    }
+    .sidebar-story:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .sidebar-story-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .sidebar-thumb {
+      width: 72px;
+      height: 55px;
+      flex-shrink: 0;
+      background: #ddd;
+      overflow: hidden;
+    }
+
+    .sidebar-headline {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.35;
+      flex: 1;
+    }
+    .sidebar-headline:hover { color: var(--ft-salmon); }
+
+    .sidebar-meta {
+      font-family: var(--sans);
+      font-size: 10.5px;
+      color: var(--ft-warm);
+    }
+
+    /* Opinion box */
+    .opinion-box {
+      background: var(--ft-dark);
+      color: var(--ft-pink);
+      padding: 18px;
+      margin-top: 20px;
+    }
+    .opinion-label {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ft-salmon);
+      margin-bottom: 10px;
+    }
+    .opinion-quote {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-style: italic;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+    .opinion-author {
+      font-family: var(--sans);
+      font-size: 11px;
+      color: #bbb;
+    }
+
+    /* ── MID SECTION ── */
+    .mid-section {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--ft-border);
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .col-story {
+      padding: 0 24px 0 0;
+      border-right: 1px solid var(--ft-border);
+    }
+    .col-story:last-child { border-right: none; padding-right: 0; padding-left: 24px; }
+    .col-story:nth-child(2) { padding-left: 24px; }
+
+    .col-image {
+      height: 180px;
+      background: #ccc;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .col-headline {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+    .col-headline:hover { color: var(--ft-salmon); }
+
+    .col-deck {
+      font-family: var(--body-serif);
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--ft-mid);
+      line-height: 1.55;
+    }
+
+    /* ── OPINION STRIP ── */
+    .opinion-strip {
+      background: var(--ft-light);
+      border-top: 1px solid var(--ft-border);
+      border-bottom: 2px solid var(--ft-dark);
+      padding: 24px 0;
+    }
+
+    .opinion-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .opinion-card {
+      border-left: 3px solid var(--ft-salmon);
+      padding-left: 14px;
+    }
+
+    .op-author {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ft-salmon);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .op-title {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
+    .op-title:hover { color: var(--ft-salmon); }
+
+    .op-snippet {
+      font-family: var(--body-serif);
+      font-size: 12.5px;
+      font-weight: 300;
+      color: var(--ft-mid);
+      line-height: 1.5;
+    }
+
+    /* ── BOTTOM GRID ── */
+    .bottom-section {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--ft-border);
+    }
+
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 0;
+    }
+
+    .bottom-col {
+      padding-right: 28px;
+      border-right: 1px solid var(--ft-border);
+    }
+    .bottom-col:last-child { border-right: none; padding-right: 0; padding-left: 28px; }
+    .bottom-col:nth-child(2) { padding-left: 28px; }
+
+    .list-story {
+      display: flex;
+      gap: 0;
+      flex-direction: column;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--ft-rule);
+      cursor: pointer;
+    }
+    .list-story:first-of-type { padding-top: 0; }
+    .list-story:last-child { border-bottom: none; }
+
+    .list-headline {
+      font-family: var(--serif);
+      font-size: 15.5px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 3px;
+    }
+    .list-headline:hover { color: var(--ft-salmon); }
+
+    .list-meta {
+      font-family: var(--sans);
+      font-size: 10.5px;
+      color: var(--ft-warm);
+    }
+
+    /* ── MARKETS BAR ── */
+    .markets-bar {
+      background: var(--ft-dark);
+      padding: 12px 0;
+    }
+    .markets-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .market-item {
+      font-family: var(--sans);
+      font-size: 11.5px;
+      color: #ccc;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .market-name { color: #888; font-size: 10px; letter-spacing: .05em; }
+    .market-val { color: #eee; font-weight: 500; }
+    .market-chg { font-size: 10.5px; }
+    .up { color: #4CAF50; }
+    .dn { color: #f44336; }
+    .market-label {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ft-salmon);
+      margin-right: 8px;
+      font-weight: 500;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ft-dark);
+      color: #888;
+      padding: 32px 0 24px;
+      margin-top: 0;
+    }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--ft-pink);
+      margin-bottom: 16px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+      padding: 20px 0;
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
+    }
+    .footer-col h4 {
+      font-family: var(--sans);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ft-salmon);
+      margin-bottom: 10px;
+    }
+    .footer-col a {
+      display: block;
+      font-family: var(--sans);
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 6px;
+    }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom {
+      padding-top: 14px;
+      font-family: var(--sans);
+      font-size: 11px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ── PLACEHOLDER IMAGES (coloured blocks) ── */
+    .img-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--sans); font-size: 11px; color: rgba(255,255,255,.5);
+      letter-spacing: .06em; text-transform: uppercase;
+    }
+
+    .color-a { background: #7D6B5A; }
+    .color-b { background: #4A6741; }
+    .color-c { background: #5B5078; }
+    .color-d { background: #6B4842; }
+    .color-e { background: #4A6B7D; }
+    .color-f { background: #8A7050; }
+    .color-g { background: #5A6B4A; }
+    .color-h { background: #7D4A5B; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .lead-section, .mid-section, .opinion-strip, .bottom-section {
+      animation: fadeUp .5s ease both;
+    }
+    .mid-section    { animation-delay: .1s; }
+    .opinion-strip  { animation-delay: .2s; }
+    .bottom-section { animation-delay: .3s; }
+
+    /* ── UTILITY ── */
+    .divider { border: none; border-top: 1px solid var(--ft-border); margin: 0; }
+
+    .read-more {
+      font-family: var(--sans);
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--ft-salmon);
+      letter-spacing: .04em;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 8px;
+    }
+    .read-more::after { content: '→'; }
+    .read-more:hover { color: var(--ft-dark); }
+
+    .live-badge {
+      display: inline-block;
+      background: var(--ft-salmon);
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      margin-right: 6px;
+      vertical-align: middle;
+      animation: livePulse 2s infinite;
+    }
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .7; }
+    }
+  </style>
 </head>
 <body>
-  <main class="page-shell">
-    <section class="hero">
-      <p class="eyebrow">The Nepali</p>
-      <h1>Discover Nepali culture</h1>
-      <p class="intro">A clean cultural page about Nepal's traditions, language, festivals, and mountain spirit. Use this page as a foundation for a blog, portfolio, or celebration of Nepali heritage.</p>
-      <div class="actions">
-        <a href="index.html" class="button button-secondary">Back to home</a>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <a href="#">Sunday, May 4, 2025</a>
+      <a href="#">Kathmandu, 24°C</a>
+      <a href="#">Nepali संस्करण</a>
+    </div>
+    <div class="topbar-right">
+      <a href="#">e-Paper</a>
+      <a href="#">Newsletter</a>
+      <a href="#">Podcast</a>
+      <a href="#">Sign In</a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="header-top">
+        <div class="header-meta">
+          Established 2024 · Kathmandu, Nepal · Independent & Trusted
+        </div>
+        <div class="masthead">
+          <h1>The Nepali</h1>
+          <div class="tagline">Independent · Informed · Nepali</div>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-ghost">Sign In</button>
+          <button class="btn btn-primary">Subscribe</button>
+        </div>
       </div>
-    </section>
+    </div>
+  </header>
 
-    <section class="section-card">
-      <h2>About Nepal</h2>
-      <p>Nepal is a land of towering Himalayas, vibrant festivals, and diverse communities. From Kathmandu’s temples to the rural villages in the Annapurna region, Nepal blends natural beauty with warm hospitality.</p>
-    </section>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-item active" href="#">Home</a>
+      <a class="nav-item" href="#">Nepal</a>
+      <a class="nav-item" href="#">Politics</a>
+      <a class="nav-item" href="#">Economy</a>
+      <a class="nav-item" href="#">World</a>
+      <a class="nav-item" href="#">Business</a>
+      <a class="nav-item" href="#">Technology</a>
+      <a class="nav-item" href="#">Environment</a>
+      <a class="nav-item" href="#">Opinion</a>
+      <a class="nav-item" href="#">Culture</a>
+      <a class="nav-item" href="#">Sport</a>
+      <div class="nav-search">
+        <input type="text" placeholder="Search The Nepali…" />
+      </div>
+    </div>
+  </nav>
 
-    <section class="section-card">
-      <h2>Culture & festivals</h2>
-      <ul class="feature-list">
-        <li><strong>Dashain</strong> — Nepal’s largest festival, celebrating victory, family, and new beginnings.</li>
-        <li><strong>Tihar</strong> — The festival of lights, honoring animals, sisters, and the bonds of family.</li>
-        <li><strong>Food</strong> — Enjoy dal bhat, momo, sel roti, and the flavors of Nepali home cooking.</li>
-      </ul>
-    </section>
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span class="ticker-label">Breaking</span>
+      <div class="ticker-track">
+        <div class="ticker-items">
+          <span class="ticker-item"><span>●</span> PM holds emergency cabinet meeting over monsoon relief funding</span>
+          <span class="ticker-item"><span>●</span> Nepali rupee falls 0.3% against US dollar amid import pressures</span>
+          <span class="ticker-item"><span>●</span> Supreme Court stays controversial land acquisition order</span>
+          <span class="ticker-item"><span>●</span> Nepal receives record hydropower investment in Q1 2025</span>
+          <span class="ticker-item"><span>●</span> Sagarmatha season: 280 climbers summit this spring</span>
+          <span class="ticker-item"><span>●</span> PM holds emergency cabinet meeting over monsoon relief funding</span>
+          <span class="ticker-item"><span>●</span> Nepali rupee falls 0.3% against US dollar amid import pressures</span>
+          <span class="ticker-item"><span>●</span> Supreme Court stays controversial land acquisition order</span>
+          <span class="ticker-item"><span>●</span> Nepal receives record hydropower investment in Q1 2025</span>
+          <span class="ticker-item"><span>●</span> Sagarmatha season: 280 climbers summit this spring</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <section class="section-card">
-      <h2>Learn a few Nepali phrases</h2>
-      <ul class="feature-list">
-        <li><strong>Namaste</strong> — Hello / Greetings</li>
-        <li><strong>Dhanyabad</strong> — Thank you</li>
-        <li><strong>Timro kasto cha?</strong> — How are you?</li>
-      </ul>
-    </section>
+  <!-- LEAD SECTION -->
+  <div class="lead-section">
+    <div class="container">
+      <div class="lead-grid">
 
-    <footer class="footer">
-      <p>Built for binayadahal7.github.io.</p>
-    </footer>
-  </main>
+        <!-- MAIN LEAD -->
+        <div class="lead-main">
+          <span class="section-label">Top Story</span>
+          <div class="lead-image">
+            <div class="img-placeholder color-b">Parliament · Kathmandu</div>
+          </div>
+          <div class="lead-kicker">
+            <span class="live-badge">Live</span> Federal Parliament
+          </div>
+          <h2 class="lead-headline">
+            Nepal's coalition government faces its sternest test as opposition tables vote of no-confidence
+          </h2>
+          <p class="lead-deck">
+            The ruling alliance scrambles to hold together a fragile parliamentary majority as three coalition partners signal they may abstain, throwing the prime minister's future into doubt ahead of the monsoon session.
+          </p>
+          <div class="byline">
+            <strong>Ramesh Adhikari</strong>
+            <span class="byline-dot"></span>
+            Political Correspondent
+            <span class="byline-dot"></span>
+            4 hours ago
+          </div>
+          <a class="read-more" href="#">Read full story</a>
+        </div>
+
+        <!-- SECONDARY LEADS (col 2) -->
+        <div class="secondary-leads">
+          <span class="section-label">Economy</span>
+
+          <div class="secondary-story">
+            <div class="secondary-image">
+              <div class="img-placeholder color-e">Hydropower · Karnali</div>
+            </div>
+            <div class="lead-kicker">Energy & Infrastructure</div>
+            <h3 class="sec-headline">
+              $4bn hydropower deal signals watershed for Nepal's clean-energy exports to India
+            </h3>
+            <p class="sec-deck">
+              A landmark agreement gives Nepal rights to sell 3,000MW of surplus power into India's national grid, transforming the country's trade balance outlook.
+            </p>
+            <a class="read-more" href="#">Read more</a>
+          </div>
+
+          <div class="secondary-story">
+            <div class="secondary-image">
+              <div class="img-placeholder color-d">Remittance · Data</div>
+            </div>
+            <div class="lead-kicker">Macroeconomics</div>
+            <h3 class="sec-headline">
+              Remittances hit NPR 1.2 trillion in fiscal year, but economists warn of dependency risk
+            </h3>
+            <p class="sec-deck">
+              Record inflows prop up the current account, masking structural weaknesses in domestic revenue generation and manufacturing output.
+            </p>
+            <a class="read-more" href="#">Read more</a>
+          </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+          <div class="sidebar-block">
+            <span class="section-label">Latest</span>
+
+            <div class="sidebar-story">
+              <div class="sidebar-story-row">
+                <div class="sidebar-thumb">
+                  <div class="img-placeholder color-f" style="font-size:9px">Everest</div>
+                </div>
+                <h4 class="sidebar-headline">Record number of permits issued for 2025 Sagarmatha season</h4>
+              </div>
+              <div class="sidebar-meta">Nepal · 1 hr ago</div>
+            </div>
+
+            <div class="sidebar-story">
+              <div class="sidebar-story-row">
+                <div class="sidebar-thumb">
+                  <div class="img-placeholder color-c" style="font-size:9px">Tech</div>
+                </div>
+                <h4 class="sidebar-headline">Fintech startups in Kathmandu attract $60m in venture capital</h4>
+              </div>
+              <div class="sidebar-meta">Business · 2 hrs ago</div>
+            </div>
+
+            <div class="sidebar-story">
+              <div class="sidebar-story-row">
+                <div class="sidebar-thumb">
+                  <div class="img-placeholder color-g" style="font-size:9px">Health</div>
+                </div>
+                <h4 class="sidebar-headline">Health ministry launches nationwide dengue vaccination drive</h4>
+              </div>
+              <div class="sidebar-meta">Nepal · 3 hrs ago</div>
+            </div>
+
+            <div class="sidebar-story">
+              <div class="sidebar-story-row">
+                <div class="sidebar-thumb">
+                  <div class="img-placeholder color-h" style="font-size:9px">Sports</div>
+                </div>
+                <h4 class="sidebar-headline">Nepal cricket team qualifies for 2026 ICC T20 World Cup</h4>
+              </div>
+              <div class="sidebar-meta">Sport · 5 hrs ago</div>
+            </div>
+          </div>
+
+          <div class="opinion-box">
+            <div class="opinion-label">Opinion</div>
+            <p class="opinion-quote">"Nepal's federalism experiment is failing not from lack of structure, but from a surplus of self-interest."</p>
+            <div class="opinion-author">— Sunita Rana, Senior Analyst</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MID SECTION – THREE COLUMNS -->
+  <div class="mid-section">
+    <div class="container">
+      <div class="three-col">
+
+        <div class="col-story">
+          <span class="section-label">World</span>
+          <div class="col-image">
+            <div class="img-placeholder color-c">UN · Geneva</div>
+          </div>
+          <h3 class="col-headline">Nepal pushes for climate reparations at UN forum, citing glacier retreat data</h3>
+          <p class="col-deck">Diplomats argue that Himalayan nations bear disproportionate costs of a crisis they scarcely created — and the data now backs them up compellingly.</p>
+          <a class="read-more" href="#">Read more</a>
+        </div>
+
+        <div class="col-story">
+          <span class="section-label">Society</span>
+          <div class="col-image">
+            <div class="img-placeholder color-a">Kathmandu Valley</div>
+          </div>
+          <h3 class="col-headline">Urban migration reshapes Kathmandu Valley as rural districts lose a third of working-age population</h3>
+          <p class="col-deck">A decade of out-migration is hollowing out hill communities while straining the capital's infrastructure and housing market beyond its capacity.</p>
+          <a class="read-more" href="#">Read more</a>
+        </div>
+
+        <div class="col-story">
+          <span class="section-label">Technology</span>
+          <div class="col-image">
+            <div class="img-placeholder color-e">Digital Nepal</div>
+          </div>
+          <h3 class="col-headline">Government's Digital Nepal 2030 blueprint: bold ambition, patchy execution</h3>
+          <p class="col-deck">Three years after the framework launched, rural broadband penetration sits at 31% — well below the 80% target — as procurement delays persist.</p>
+          <a class="read-more" href="#">Read more</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- OPINION STRIP -->
+  <div class="opinion-strip">
+    <div class="container">
+      <span class="section-label">Opinion & Analysis</span>
+      <div class="opinion-grid">
+
+        <div class="opinion-card">
+          <div class="op-author">Arjun Shrestha</div>
+          <h4 class="op-title">Why Nepal's anti-corruption agency needs independence, not just authority</h4>
+          <p class="op-snippet">Without genuine prosecutorial autonomy, the CIAA risks becoming a political instrument rather than a shield for citizens.</p>
+        </div>
+
+        <div class="opinion-card">
+          <div class="op-author">Meera Poudel</div>
+          <h4 class="op-title">The invisible cost of Nepal's migrant worker boom</h4>
+          <p class="op-snippet">Remittances build houses and sustain families — but they also leave behind fractured communities and an entire generation of fatherless children.</p>
+        </div>
+
+        <div class="opinion-card">
+          <div class="op-author">Dr. Bikash Gurung</div>
+          <h4 class="op-title">Nepal should bet on agro-tourism, not industrial agriculture</h4>
+          <p class="op-snippet">The comparative advantage lies in terroir and tradition. Mass farming risks both ecological damage and a losing competition with Indian produce.</p>
+        </div>
+
+        <div class="opinion-card">
+          <div class="op-author">Priya Tamang</div>
+          <h4 class="op-title">A gender lens on Nepal's new education policy — and what it misses</h4>
+          <p class="op-snippet">Enrolment figures look encouraging, but the real barriers — caste, geography, and household labour expectations — remain largely unaddressed.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM SECTION -->
+  <div class="bottom-section">
+    <div class="container">
+      <div class="bottom-grid">
+
+        <!-- BIG FEATURE -->
+        <div class="bottom-col">
+          <span class="section-label">In-Depth Report</span>
+          <div class="col-image" style="height:220px;">
+            <div class="img-placeholder color-g">Pokhara · Tourism</div>
+          </div>
+          <h3 class="col-headline">Pokhara's tourism rebound masks deepening inequality between lakeside luxury and hill-village poverty</h3>
+          <p class="col-deck" style="margin-top:8px;">
+            A Nepali investigation reveals that the revenue flowing into the new international airport's hinterland is bypassing the communities that bear the highest environmental cost. Hoteliers prosper; porters and small farmers do not.
+          </p>
+          <div class="byline" style="margin-top:12px;">
+            <strong>Investigative Desk</strong>
+            <span class="byline-dot"></span>
+            3-part series
+          </div>
+          <a class="read-more" href="#">Read the investigation</a>
+        </div>
+
+        <!-- LIST COL 1 -->
+        <div class="bottom-col">
+          <span class="section-label">Nepal</span>
+
+          <div class="list-story">
+            <h4 class="list-headline">Flood early-warning system extended to 42 more river basins ahead of monsoon</h4>
+            <div class="list-meta">Disaster Risk · 30 min ago</div>
+          </div>
+          <div class="list-story">
+            <h4 class="list-headline">Birgunj customs revenue rises 18% as trade with India normalises post-disruption</h4>
+            <div class="list-meta">Trade · 1 hr ago</div>
+          </div>
+          <div class="list-story">
+            <h4 class="list-headline">Earthquake-resilient construction code to be mandatory for all new public buildings</h4>
+            <div class="list-meta">Policy · 2 hrs ago</div>
+          </div>
+          <div class="list-story">
+            <h4 class="list-headline">Lumbini sees 40% surge in Buddhist pilgrims from Southeast Asia this quarter</h4>
+            <div class="list-meta">Tourism · 4 hrs ago</div>
+          </div>
+          <div class="list-story">
+            <h4 class="list-headline">NRB raises interest rate corridor ceiling by 25 basis points to cool inflation</h4>
+            <div class="list-meta">Economy · 5 hrs ago</div>
+          </div>
+        </div>
+
+        <!-- LIST COL 2 -->
+        <div class="bottom-col">
+          <span class="section-label">World & Region</span>
+
+          <div class="list-story">
+            <h4 class="list-headline">India-China border tensions flare again in Arunachal, Nepal monitors situation</h4>
+            <div class="list-meta">Geopolitics · 45 min ago</div>
+          </div>
+          <div class="list-story">
+            <h4 class="list-headline">World Bank approves $350m grant for South Asian climate adaptation fund</h4>
+            <div class="list-meta">Development · 2 hrs ago</div>
+          </div>
+          <div class="list-story">
+            <h4 class="list-headline">Gulf states tighten labour rules for domestic workers — thousands of Nepali migrants affected</h4>
+            <div class="list-meta">Migration · 3 hrs ago</div>
+          </div>
+          <div class="list-story">
+            <h4 class="list-headline">SAARC summit finally rescheduled for October after six-year hiatus</h4>
+            <div class="list-meta">Diplomacy · 5 hrs ago</div>
+          </div>
+          <div class="list-story">
+            <h4 class="list-headline">UN report places Nepal 142nd on human development index, up four places</h4>
+            <div class="list-meta">Development · 6 hrs ago</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MARKETS BAR -->
+  <div class="markets-bar">
+    <div class="markets-inner">
+      <span class="market-label">Markets</span>
+      <div class="market-item">
+        <span class="market-name">NEPSE</span>
+        <span class="market-val">2,184.30</span>
+        <span class="market-chg up">+12.4 (+0.57%)</span>
+      </div>
+      <div class="market-item">
+        <span class="market-name">NPR/USD</span>
+        <span class="market-val">133.42</span>
+        <span class="market-chg dn">−0.28 (−0.21%)</span>
+      </div>
+      <div class="market-item">
+        <span class="market-name">NPR/INR</span>
+        <span class="market-val">1.60</span>
+        <span class="market-chg">Stable</span>
+      </div>
+      <div class="market-item">
+        <span class="market-name">Gold (Tola)</span>
+        <span class="market-val">NPR 148,200</span>
+        <span class="market-chg up">+800 (+0.54%)</span>
+      </div>
+      <div class="market-item">
+        <span class="market-name">Crude (Brent)</span>
+        <span class="market-val">$78.42</span>
+        <span class="market-chg dn">−0.61 (−0.77%)</span>
+      </div>
+      <div class="market-item">
+        <span class="market-name">Bitcoin</span>
+        <span class="market-val">$94,810</span>
+        <span class="market-chg up">+1.2%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">The Nepali</div>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Nepal</h4>
+          <a href="#">Politics</a>
+          <a href="#">Government</a>
+          <a href="#">Society</a>
+          <a href="#">Education</a>
+          <a href="#">Health</a>
+        </div>
+        <div class="footer-col">
+          <h4>Economy</h4>
+          <a href="#">Business</a>
+          <a href="#">Markets</a>
+          <a href="#">Trade</a>
+          <a href="#">Banking</a>
+          <a href="#">Agriculture</a>
+        </div>
+        <div class="footer-col">
+          <h4>World</h4>
+          <a href="#">South Asia</a>
+          <a href="#">India</a>
+          <a href="#">China</a>
+          <a href="#">Geopolitics</a>
+          <a href="#">Climate</a>
+        </div>
+        <div class="footer-col">
+          <h4>Opinion</h4>
+          <a href="#">Editorials</a>
+          <a href="#">Columnists</a>
+          <a href="#">Letters</a>
+          <a href="#">Debate</a>
+        </div>
+        <div class="footer-col">
+          <h4>About</h4>
+          <a href="#">Our Mission</a>
+          <a href="#">Editorial Policy</a>
+          <a href="#">Advertise</a>
+          <a href="#">Contact Us</a>
+          <a href="#">Careers</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 The Nepali. All rights reserved.</span>
+        <span>
+          <a href="#" style="color:#666;margin:0 8px;">Privacy</a>
+          <a href="#" style="color:#666;margin:0 8px;">Terms</a>
+          <a href="#" style="color:#666;margin:0 8px;">Cookie Policy</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
